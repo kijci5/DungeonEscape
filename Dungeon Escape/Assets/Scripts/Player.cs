@@ -12,6 +12,7 @@ public class Player : MonoBehaviour {
     private Rigidbody2D rigidBody;
     private PlayerAnimation pAnimation;
     private SpriteRenderer spriteRenderer;
+    private SpriteRenderer swordSpriteRenderer;
     private bool isGrounded = false;
     private bool resetJumpNeeded = false;
 
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour {
         rigidBody = GetComponent<Rigidbody2D>();
 	    pAnimation = GetComponent<PlayerAnimation>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        swordSpriteRenderer = transform.GetChild(1).GetComponent<SpriteRenderer>();
     }
 	
 	// Update is called once per frame
@@ -72,10 +74,22 @@ public class Player : MonoBehaviour {
         if (move > 0)
         {
             spriteRenderer.flipX = false;
+            swordSpriteRenderer.flipX = false;
+            swordSpriteRenderer.flipY = false;
+
+            Vector3 newPos = swordSpriteRenderer.transform.localPosition;
+            newPos.x = 1.01f;
+            swordSpriteRenderer.transform.localPosition = newPos;
         }
         else if (move < 0)
         {
             spriteRenderer.flipX = true;
+            swordSpriteRenderer.flipX = true;
+            swordSpriteRenderer.flipY = true;
+
+            Vector3 newPos = swordSpriteRenderer.transform.localPosition;
+            newPos.x = -1.01f;
+            swordSpriteRenderer.transform.localPosition = newPos;
         }
     }
 

@@ -5,32 +5,35 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
 
-    private Animator animator;
+    private Animator playerAnimator;
+    private Animator swordAnimator;
 
 	void Start ()
 	{
-	    animator = GetComponentInChildren<Animator>();
+	    playerAnimator = GetComponentInChildren<Animator>();
+	    swordAnimator = transform.GetChild(1).GetComponent<Animator>();
 	}
 
     public void Move(float move)
     {
-       animator.SetFloat("Move",Mathf.Abs(move));
+       playerAnimator.SetFloat("Move",Mathf.Abs(move));
     }
 
     public void Jump(bool isGrounded)
     {
         if(!isGrounded)
         {
-            animator.SetBool("Jumping", true);
+            playerAnimator.SetBool("Jumping", true);
         }
         else if (isGrounded)
         {
-            animator.SetBool("Jumping", false);
+            playerAnimator.SetBool("Jumping", false);
         }
     }
 
     public void Attack()
     {
-        animator.SetTrigger("Attack");
+        playerAnimator.SetTrigger("Attack");
+        swordAnimator.SetTrigger("SwordAnimation");
     }
 }

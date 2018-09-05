@@ -25,7 +25,7 @@ TextureImporter:
     21300040: Sword_Three_Particle_20
     21300042: Sword_Three_Particle_21
   externalObjects: {}
-  serializedVersion: 5
+  serializedVersion: 6
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -43,6 +43,8 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -53,7 +55,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: -1
     aniso: -1
-    mipBias: -1
+    mipBias: -100
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -140,7 +142,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b36ba0f9476b3848ad4d0bfce3211f8
+      spriteID: 29300a639d2eec44c8e046cd8942c261
       vertices: []
       indices: 
       edges: []
@@ -160,7 +162,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9deb6071d76d5ac429f80445d55d7b19
+      spriteID: d2301961d0f91b444860888d9f27215c
       vertices: []
       indices: 
       edges: []
@@ -180,7 +182,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c62d347ea0ddc745ba0dc9739075a14
+      spriteID: c1b0a209179f0a043a31712cf95a2f67
       vertices: []
       indices: 
       edges: []
@@ -200,7 +202,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed95c361641dfca4d8f835d93d6c8b2b
+      spriteID: 3f52e4ddb3f13ee4abece41a21f1fc17
       vertices: []
       indices: 
       edges: []
@@ -220,7 +222,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9650e8a077155741b83a5771fc9ea04
+      spriteID: d0466b7696c5a074bb437de89ac803cf
       vertices: []
       indices: 
       edges: []
@@ -240,7 +242,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d92d5ace7e425bf46ad7c3eed990a8ed
+      spriteID: 31568208f5200b94aa4184254ee0d82e
       vertices: []
       indices: 
       edges: []
@@ -260,7 +262,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 064f285c2bba2b14f9cbfc374d9e327f
+      spriteID: 889b00f17cf52d648a89e208aef1ae5d
       vertices: []
       indices: 
       edges: []
@@ -280,7 +282,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aee5457fe69f9e24e8e6aca6cd51a760
+      spriteID: ec1c2da3882e36d4e9d6c1c5d6acaed6
       vertices: []
       indices: 
       edges: []
