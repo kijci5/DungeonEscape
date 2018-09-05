@@ -5,18 +5,56 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     public float speed=2f;
+    public float jumpForce = 5f;
 
     private Rigidbody2D rigidBody;
+    private bool isGrounded=false;
+    private bool resetJumpNeeded = false;
 	// Use this for initialization
 	void Start () {
         rigidBody = GetComponent<Rigidbody2D>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
+	    Movement();
 
-        float translation = Input.GetAxis("Horizontal")*speed;
-
-        rigidBody.velocity = new Vector2(translation,rigidBody.velocity.y);
+	    CheckGrounded();
 	}
+
+    private void CheckGrounded()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1f, 1 << 8);
+        Debug.DrawRay(transform.position, Vector2.down, Color.red, 1f);
+
+        if (hit.collider != null)
+        {
+            if (resetJumpNeeded == false)
+            {
+                isGrounded = true;
+            }
+        }
+    }
+
+    private void Movement()
+    {
+        float move = Input.GetAxis("Horizontal") * speed;
+
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpForce);
+            isGrounded = false;
+            resetJumpNeeded = true;
+            StartCoroutine(ResetJumpNeededRoutine());
+        }
+
+        rigidBody.velocity = new Vector2(move, rigidBody.velocity.y);
+    }
+
+    IEnumerator ResetJumpNeededRoutine()
+    {
+        yield return new WaitForSeconds(0.1f);
+        resetJumpNeeded = false;
+    }
 }
