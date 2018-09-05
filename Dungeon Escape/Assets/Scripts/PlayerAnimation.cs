@@ -16,4 +16,21 @@ public class PlayerAnimation : MonoBehaviour
     {
        animator.SetFloat("Move",Mathf.Abs(move));
     }
+
+    public void Jump(bool isGrounded)
+    {
+        if(!isGrounded)
+        {
+            animator.SetBool("Jumping", true);
+        }
+        else if (isGrounded)
+        {
+            animator.SetBool("Jumping", false);
+        }
+    }
+
+    public void Attack()
+    {
+        animator.SetTrigger("Attack");
+    }
 }

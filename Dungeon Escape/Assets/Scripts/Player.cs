@@ -27,6 +27,11 @@ public class Player : MonoBehaviour {
 	    Movement();
 
 	    CheckGrounded();
+
+	    if (Input.GetKeyDown(KeyCode.Mouse0) && isGrounded)
+	    {
+            pAnimation.Attack();
+	    }
 	}
 
     private void CheckGrounded()
@@ -38,6 +43,7 @@ public class Player : MonoBehaviour {
             if (resetJumpNeeded == false)
             {
                 isGrounded = true;
+                pAnimation.Jump(isGrounded);
             }
         }
     }
@@ -46,6 +52,23 @@ public class Player : MonoBehaviour {
     {
         float move = Input.GetAxis("Horizontal");
 
+        Flip(move);
+
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpForce);
+            isGrounded = false;
+            resetJumpNeeded = true;
+            StartCoroutine(ResetJumpNeededRoutine());
+            pAnimation.Jump(isGrounded);
+        }
+
+        rigidBody.velocity = new Vector2(move*speed, rigidBody.velocity.y);
+        pAnimation.Move(move);
+    }
+
+    private void Flip(float move)
+    {
         if (move > 0)
         {
             spriteRenderer.flipX = false;
@@ -54,17 +77,6 @@ public class Player : MonoBehaviour {
         {
             spriteRenderer.flipX = true;
         }
-
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpForce);
-            isGrounded = false;
-            resetJumpNeeded = true;
-            StartCoroutine(ResetJumpNeededRoutine());
-        }
-
-        rigidBody.velocity = new Vector2(move*speed, rigidBody.velocity.y);
-        pAnimation.Move(move);
     }
 
     IEnumerator ResetJumpNeededRoutine()
