@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    public float speed=2f;
-    public float jumpForce = 5f;
+    [SerializeField]
+    private float speed=3f;
+    [SerializeField]
+    private float jumpForce = 5f;
 
     private Rigidbody2D rigidBody;
     private bool isGrounded=false;
     private bool resetJumpNeeded = false;
+
+    private PlayerAnimation pAnimation;
 	// Use this for initialization
 	void Start () {
         rigidBody = GetComponent<Rigidbody2D>();
+	    pAnimation = GetComponent<PlayerAnimation>();
 	}
 	
 	// Update is called once per frame
@@ -26,7 +31,6 @@ public class Player : MonoBehaviour {
     private void CheckGrounded()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1f, 1 << 8);
-        Debug.DrawRay(transform.position, Vector2.down, Color.red, 1f);
 
         if (hit.collider != null)
         {
@@ -39,7 +43,7 @@ public class Player : MonoBehaviour {
 
     private void Movement()
     {
-        float move = Input.GetAxis("Horizontal") * speed;
+        float move = Input.GetAxis("Horizontal");
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
@@ -49,7 +53,8 @@ public class Player : MonoBehaviour {
             StartCoroutine(ResetJumpNeededRoutine());
         }
 
-        rigidBody.velocity = new Vector2(move, rigidBody.velocity.y);
+        rigidBody.velocity = new Vector2(move*speed, rigidBody.velocity.y);
+        pAnimation.Move(move);
     }
 
     IEnumerator ResetJumpNeededRoutine()
