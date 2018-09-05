@@ -10,15 +10,16 @@ public class Player : MonoBehaviour {
     private float jumpForce = 5f;
 
     private Rigidbody2D rigidBody;
-    private bool isGrounded=false;
+    private PlayerAnimation pAnimation;
+    private SpriteRenderer spriteRenderer;
+    private bool isGrounded = false;
     private bool resetJumpNeeded = false;
 
-    private PlayerAnimation pAnimation;
-	// Use this for initialization
-	void Start () {
+    void Start () {
         rigidBody = GetComponent<Rigidbody2D>();
 	    pAnimation = GetComponent<PlayerAnimation>();
-	}
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -44,6 +45,15 @@ public class Player : MonoBehaviour {
     private void Movement()
     {
         float move = Input.GetAxis("Horizontal");
+
+        if (move > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (move < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
