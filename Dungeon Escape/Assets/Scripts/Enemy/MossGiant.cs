@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class MossGiant : Enemy {
 
-	// Use this for initialization
-	private void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	public override void Update ()
-	{
+    public override void Update ()
+    {
+        if (IsIdleState())
+        {
+            return;
+        }
 	    base.Move();
 	}
 }
