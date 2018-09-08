@@ -14,23 +14,27 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField]
     protected Transform pointA, pointB;
 
+    protected Animator animator;
+    protected bool isHit=false;
+
     private Vector3 currentTarget;
-    private Animator animator;
     private SpriteRenderer spriteRenderer;
+    private Player player;
 
     public virtual void Start()
     {
         animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        player = FindObjectOfType<Player>();
     }
 
     public virtual void Update()
     {
-        if (IsIdleState())
+        if (IsIdleState()&&animator.GetBool("InCombat")==false)
         {
             return;
         }
-        Move();
+        Movement();
     }
 
     protected virtual void Attack()
@@ -38,7 +42,7 @@ public abstract class Enemy : MonoBehaviour
 
     }
 
-    protected virtual void Move()
+    protected virtual void Movement()
     {
         Flip();
 
@@ -52,7 +56,22 @@ public abstract class Enemy : MonoBehaviour
             currentTarget = pointA.position;
             animator.SetTrigger("Idle");
         }
-        transform.position = Vector3.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
+
+        if (DistanceBetweenPlayer() > 2f)
+        {
+            isHit = false;
+            animator.SetBool("InCombat", false);
+        }
+
+        if (isHit == false)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
+        }
+    }
+
+    private float DistanceBetweenPlayer()
+    {
+        return Vector3.Distance(transform.localPosition,player.transform.localPosition);
     }
 
     private bool IsIdleState()

@@ -8,7 +8,7 @@ public class PlayerAnimation : MonoBehaviour
     private Animator playerAnimator;
     private Animator swordAnimator;
 
-	void Start ()
+    private void Start ()
 	{
 	    playerAnimator = GetComponentInChildren<Animator>();
 	    swordAnimator = transform.GetChild(1).GetComponent<Animator>();

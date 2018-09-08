@@ -26,7 +26,7 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
     private void Update ()
 	{
-	    Movement();
+	    Move();
 
 	    CheckGrounded();
 
@@ -50,7 +50,7 @@ public class Player : MonoBehaviour {
         }
     }
 
-    private void Movement()
+    private void Move()
     {
         float move = Input.GetAxis("Horizontal");
 
