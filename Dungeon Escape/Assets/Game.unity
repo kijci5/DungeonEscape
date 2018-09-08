@@ -141,6 +141,93 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &221071876
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 221071877}
+  - component: {fileID: 221071879}
+  - component: {fileID: 221071878}
+  - component: {fileID: 221071880}
+  m_Layer: 12
+  m_Name: Hit_Box
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &221071877
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 221071876}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.225, y: -0.247, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1415954658}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &221071878
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 221071876}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &221071879
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 221071876}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.010659933, y: 0.07918734}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.08233309, y: 0.08537884}
+  m_EdgeRadius: 0
+--- !u!114 &221071880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 221071876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4da75459ed557dc498f550e33f9f47d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &571363297
 GameObject:
   m_ObjectHideFlags: 0
@@ -1771,7 +1858,8 @@ GameObject:
   - component: {fileID: 802378277}
   - component: {fileID: 802378279}
   - component: {fileID: 802378278}
-  m_Layer: 0
+  - component: {fileID: 802378280}
+  m_Layer: 11
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1855,6 +1943,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &802378280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 802378276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee9548a20eb83b24a9b8cded24bbc8bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acidEffect: {fileID: 114248688705624254, guid: b9b1acbb8cf7d5c4289daa37d64e1fc4,
+    type: 2}
 --- !u!1 &870154124
 GameObject:
   m_ObjectHideFlags: 0
@@ -1952,7 +2053,7 @@ GameObject:
   - component: {fileID: 884166276}
   - component: {fileID: 884166277}
   - component: {fileID: 884166278}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Moss_Giant_Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1987,6 +2088,7 @@ MonoBehaviour:
   health: 3
   speed: 2
   gems: 5
+  areaOfAttack: 2
   pointA: {fileID: 1291320756}
   pointB: {fileID: 746900111}
 --- !u!61 &884166278
@@ -2118,13 +2220,14 @@ GameObject:
   m_Component:
   - component: {fileID: 997382875}
   - component: {fileID: 997382874}
-  m_Layer: 0
+  - component: {fileID: 997382876}
+  m_Layer: 11
   m_Name: Spider_Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &997382874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2139,6 +2242,7 @@ MonoBehaviour:
   health: 2
   speed: 3
   gems: 3
+  areaOfAttack: 5
   pointA: {fileID: 195703479}
   pointB: {fileID: 1509117088}
 --- !u!4 &997382875
@@ -2155,6 +2259,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &997382876
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 997382873}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.08394861, y: -0.45509177}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.2989988, y: 0.8851228}
+  m_EdgeRadius: 0
 --- !u!1 &1152741604
 GameObject:
   m_ObjectHideFlags: 0
@@ -3116,6 +3245,7 @@ MonoBehaviour:
   health: 4
   speed: 1
   gems: 1
+  areaOfAttack: 2
   pointA: {fileID: 2097422127}
   pointB: {fileID: 2013515568}
 --- !u!4 &1277741224
@@ -3239,7 +3369,7 @@ GameObject:
   - component: {fileID: 1415954658}
   - component: {fileID: 1415954660}
   - component: {fileID: 1415954659}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3255,7 +3385,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 221071877}
   m_Father: {fileID: 884166276}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

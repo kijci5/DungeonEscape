@@ -14,6 +14,8 @@ public abstract class Enemy : MonoBehaviour,IDamageable
     [SerializeField]
     protected int gems;
     [SerializeField]
+    protected float areaOfAttack;
+    [SerializeField]
     protected Transform pointA, pointB;
 
     protected Animator animator;
@@ -51,15 +53,17 @@ public abstract class Enemy : MonoBehaviour,IDamageable
 
         MovingBetweenPoints();
 
-        if (isHit == false)
+        if (isHit == false && !animator.GetBool("InCombat"))
         {
             transform.position = Vector3.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
         }
 
-        if (DistanceBetweenPlayer() > 2f)
+        if (DistanceBetweenPlayer() > areaOfAttack)
         {
             GetOutOfCombat();
         }
+        else if(DistanceBetweenPlayer()<areaOfAttack)
+        { animator.SetBool("InCombat",true);}
 
         FacePlayerInCombat();
     }
@@ -113,7 +117,7 @@ public abstract class Enemy : MonoBehaviour,IDamageable
     }
 
 
-    public void Damage(int damageAmount)
+    public virtual void Damage(int damageAmount)
     {
         animator.SetTrigger("Hit");
         isHit = true;
