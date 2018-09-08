@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour,IDamageable {
 
     [SerializeField]
     private float speed=3f;
     [SerializeField]
     private float jumpForce = 5f;
+    [SerializeField]
+    private int health = 5;
 
     private Rigidbody2D rigidBody;
     private PlayerAnimation pAnimation;
@@ -16,11 +18,14 @@ public class Player : MonoBehaviour {
     private bool isGrounded = false;
     private bool resetJumpNeeded = false;
 
+    public int Health { get; set; }
+
     private void Start () {
         rigidBody = GetComponent<Rigidbody2D>();
 	    pAnimation = GetComponent<PlayerAnimation>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         swordSpriteRenderer = transform.GetChild(1).GetComponent<SpriteRenderer>();
+        Health = health;
     }
 	
 	// Update is called once per frame
@@ -97,5 +102,15 @@ public class Player : MonoBehaviour {
     {
         yield return new WaitForSeconds(0.1f);
         resetJumpNeeded = false;
+    }
+
+    public void Damage(int damageAmount)
+    {
+        Health -= damageAmount;
+
+        if (Health < damageAmount)
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -44,8 +44,25 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Movement()
     {
-        Flip();
+        FlipWhileMoving();
 
+        MovingBetweenPoints();
+
+        if (isHit == false)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
+        }
+
+        if (DistanceBetweenPlayer() > 2f)
+        {
+            GetOutOfCombat();
+        }
+
+        FacePlayerInCombat();
+    }
+
+    private void MovingBetweenPoints()
+    {
         if (transform.position.x <= pointA.position.x)
         {
             currentTarget = pointB.position;
@@ -56,16 +73,24 @@ public abstract class Enemy : MonoBehaviour
             currentTarget = pointA.position;
             animator.SetTrigger("Idle");
         }
+    }
 
-        if (DistanceBetweenPlayer() > 2f)
+    private void GetOutOfCombat()
+    {
+        isHit = false;
+        animator.SetBool("InCombat", false);
+    }
+
+    private void FacePlayerInCombat()
+    {
+        Vector3 distance = player.transform.localPosition - transform.localPosition;
+        if (distance.x > 0f && animator.GetBool("InCombat"))
         {
-            isHit = false;
-            animator.SetBool("InCombat", false);
+            spriteRenderer.flipX = false;
         }
-
-        if (isHit == false)
+        else if (distance.x < 0f && animator.GetBool("InCombat"))
         {
-            transform.position = Vector3.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
+            spriteRenderer.flipX = true;
         }
     }
 
@@ -79,7 +104,7 @@ public abstract class Enemy : MonoBehaviour
         return animator.GetCurrentAnimatorStateInfo(0).IsName("Idle");
     }
 
-    private void Flip()
+    private void FlipWhileMoving()
     {
         spriteRenderer.flipX = currentTarget == pointA.position;
     }
