@@ -16,7 +16,7 @@ public class Player : MonoBehaviour {
     private bool isGrounded = false;
     private bool resetJumpNeeded = false;
 
-    void Start () {
+    private void Start () {
         rigidBody = GetComponent<Rigidbody2D>();
 	    pAnimation = GetComponent<PlayerAnimation>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -24,7 +24,7 @@ public class Player : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update ()
+    private void Update ()
 	{
 	    Movement();
 
@@ -93,7 +93,7 @@ public class Player : MonoBehaviour {
         }
     }
 
-    IEnumerator ResetJumpNeededRoutine()
+    private IEnumerator ResetJumpNeededRoutine()
     {
         yield return new WaitForSeconds(0.1f);
         resetJumpNeeded = false;

@@ -24,7 +24,14 @@ public abstract class Enemy : MonoBehaviour
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    public abstract void Update();
+    public virtual void Update()
+    {
+        if (IsIdleState())
+        {
+            return;
+        }
+        Move();
+    }
 
     protected virtual void Attack()
     {
@@ -48,7 +55,7 @@ public abstract class Enemy : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
     }
 
-    protected bool IsIdleState()
+    private bool IsIdleState()
     {
         return animator.GetCurrentAnimatorStateInfo(0).IsName("Idle");
     }
