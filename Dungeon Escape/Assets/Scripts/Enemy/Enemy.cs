@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour,IDamageable
 {
+    public int Health { get; set; }
+
     [SerializeField]
     protected int health;
     [SerializeField]
@@ -26,6 +28,7 @@ public abstract class Enemy : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         player = FindObjectOfType<Player>();
+        Health = health;
     }
 
     public virtual void Update()
@@ -107,5 +110,19 @@ public abstract class Enemy : MonoBehaviour
     private void FlipWhileMoving()
     {
         spriteRenderer.flipX = currentTarget == pointA.position;
+    }
+
+
+    public void Damage(int damageAmount)
+    {
+        animator.SetTrigger("Hit");
+        isHit = true;
+        Health -= damageAmount;
+        animator.SetBool("InCombat", true);
+
+        if (Health < 1)
+        {
+            Destroy(gameObject);
+        }
     }
 }
