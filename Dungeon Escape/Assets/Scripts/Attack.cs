@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-
+    [SerializeField]
+    private int damageAmount=1;
     private bool canTakeDamage=true;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -13,7 +14,7 @@ public class Attack : MonoBehaviour
 
         if (hit != null && canTakeDamage)
         {
-            hit.Damage(1);
+            hit.Damage(damageAmount);
             canTakeDamage = false;
             StartCoroutine(ResetRoutine());
         }

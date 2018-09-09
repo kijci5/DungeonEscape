@@ -20,7 +20,7 @@ public class AcidEffect : MonoBehaviour
     }
 
     public void Update()
-    {
+    { 
         this.transform.position+= new Vector3(face,0f,0f);
 
         if(Vector3.Distance(startPos,transform.localPosition)>projectileRange)

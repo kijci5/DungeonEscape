@@ -5,10 +5,15 @@ using UnityEngine;
 public class SpiderAnimationEvent : MonoBehaviour
 {
 
-    public AcidEffect acidEffect;
+    private Spider spider;
+
+    public void Start()
+    {
+        spider = GetComponentInParent<Spider>();
+    }
 
     public void Fire()
     {
-        Instantiate(acidEffect, this.transform.position, Quaternion.identity);
+        spider.Attack();
     }
 }

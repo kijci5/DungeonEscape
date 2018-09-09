@@ -228,6 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da75459ed557dc498f550e33f9f47d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
 --- !u!1 &571363297
 GameObject:
   m_ObjectHideFlags: 0
@@ -1639,6 +1640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da75459ed557dc498f550e33f9f47d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
 --- !u!1 &702310214
 GameObject:
   m_ObjectHideFlags: 0
@@ -1954,8 +1956,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee9548a20eb83b24a9b8cded24bbc8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acidEffect: {fileID: 114248688705624254, guid: b9b1acbb8cf7d5c4289daa37d64e1fc4,
-    type: 2}
 --- !u!1 &870154124
 GameObject:
   m_ObjectHideFlags: 0
@@ -2023,6 +2023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da75459ed557dc498f550e33f9f47d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
 --- !u!50 &870154128
 Rigidbody2D:
   serializedVersion: 4
@@ -2245,6 +2246,8 @@ MonoBehaviour:
   areaOfAttack: 5
   pointA: {fileID: 195703479}
   pointB: {fileID: 1509117088}
+  acidEffectPrefab: {fileID: 1012370877825448, guid: b9b1acbb8cf7d5c4289daa37d64e1fc4,
+    type: 2}
 --- !u!4 &997382875
 Transform:
   m_ObjectHideFlags: 0
@@ -3652,8 +3655,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  jumpForce: 5
-  health: 5
+  jumpForce: 7
+  health: 78
 --- !u!4 &1778974532
 Transform:
   m_ObjectHideFlags: 0

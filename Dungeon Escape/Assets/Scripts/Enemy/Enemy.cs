@@ -20,6 +20,7 @@ public abstract class Enemy : MonoBehaviour,IDamageable
 
     protected Animator animator;
     protected bool isHit=false;
+    protected bool isDead = false;
 
     private Vector3 currentTarget;
     private SpriteRenderer spriteRenderer;
@@ -39,12 +40,11 @@ public abstract class Enemy : MonoBehaviour,IDamageable
         {
             return;
         }
-        Movement();
-    }
 
-    protected virtual void Attack()
-    {
-
+        if (isDead == false)
+        {
+            Movement();
+        }
     }
 
     protected virtual void Movement()
@@ -58,7 +58,7 @@ public abstract class Enemy : MonoBehaviour,IDamageable
             transform.position = Vector3.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
         }
 
-        if (DistanceBetweenPlayer() > areaOfAttack)
+        if (DistanceBetweenPlayer() > areaOfAttack || player.Health<=0)
         {
             GetOutOfCombat();
         }
@@ -119,6 +119,8 @@ public abstract class Enemy : MonoBehaviour,IDamageable
 
     public virtual void Damage(int damageAmount)
     {
+        if (isDead)
+        { return; }
         animator.SetTrigger("Hit");
         isHit = true;
         Health -= damageAmount;
@@ -126,7 +128,8 @@ public abstract class Enemy : MonoBehaviour,IDamageable
 
         if (Health < 1)
         {
-            Destroy(gameObject);
+            isDead = true;
+            animator.SetTrigger("Death");
         }
     }
 }

@@ -15,8 +15,10 @@ public class Player : MonoBehaviour,IDamageable {
     private PlayerAnimation pAnimation;
     private SpriteRenderer spriteRenderer;
     private SpriteRenderer swordSpriteRenderer;
+    private Animator animator;
     private bool isGrounded = false;
     private bool resetJumpNeeded = false;
+    private bool isDead = false;
 
     public int Health { get; set; }
 
@@ -25,12 +27,16 @@ public class Player : MonoBehaviour,IDamageable {
 	    pAnimation = GetComponent<PlayerAnimation>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         swordSpriteRenderer = transform.GetChild(1).GetComponent<SpriteRenderer>();
+        animator = GetComponentInChildren<Animator>();
         Health = health;
     }
 	
 	// Update is called once per frame
     private void Update ()
-	{
+    {
+        if (isDead)
+        { return;}
+        
 	    Move();
 
 	    CheckGrounded();
@@ -108,9 +114,10 @@ public class Player : MonoBehaviour,IDamageable {
     {
         Health -= damageAmount;
 
-        if (Health < damageAmount)
+        if (Health < 1 && !isDead)
         {
-            Destroy(gameObject);
+            isDead = true;
+            animator.SetTrigger("Death");
         }
     }
 }
