@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour,IDamageable {
+public class Player : MonoBehaviour,IDamageable
+{
+    public int DiamondsCollected = 0;
 
     [SerializeField]
     private float speed=3f;

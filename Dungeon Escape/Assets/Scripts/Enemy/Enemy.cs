@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour,IDamageable
 {
+    public GameObject diamondPrefab;
     public int Health { get; set; }
 
     [SerializeField]
@@ -12,7 +13,7 @@ public abstract class Enemy : MonoBehaviour,IDamageable
     [SerializeField]
     protected int speed;
     [SerializeField]
-    protected int gems;
+    protected int numberOfDiamonds;
     [SerializeField]
     protected float areaOfAttack;
     [SerializeField]
@@ -130,6 +131,8 @@ public abstract class Enemy : MonoBehaviour,IDamageable
         {
             isDead = true;
             animator.SetTrigger("Death");
+            GameObject diamond = Instantiate(diamondPrefab, transform.position, Quaternion.identity) as GameObject;
+            diamond.GetComponent<Diamond>().diamondValue = numberOfDiamonds;
         }
     }
 }
