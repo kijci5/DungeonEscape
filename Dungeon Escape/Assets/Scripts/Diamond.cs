@@ -15,7 +15,7 @@ public class Diamond : MonoBehaviour
     {
         if (other.name == "Player")
         {
-            player.DiamondsCollected += diamondValue;
+            player.AddGems(diamondValue);
             Destroy(gameObject);
         }
     }

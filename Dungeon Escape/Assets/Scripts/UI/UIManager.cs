@@ -20,12 +20,14 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public Text playerGemCountText;
+    public Text gemCountShop;
+    public Text gemCountHUD;
     public Image selectionImage;
+    public Image[] lives;
 
     public void OpenShop(int gemCount)
     {
-        playerGemCountText.text = "" + gemCount + "G";
+        gemCountShop.text = "" + gemCount + "G";
     }
 
     public void UpdateShopSelection(int yPos)
@@ -36,5 +38,19 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+    }
+
+    public void UpdateGemCount(int count)
+    {
+        gemCountHUD.text = "" + count;
+    }
+
+    public void UpdateLives(int livesRemaining)
+    {
+        for (int i = 0; i <= livesRemaining; i++)
+        {
+            if(i==livesRemaining)
+            { lives[i].enabled=false;}
+        }
     }
 }

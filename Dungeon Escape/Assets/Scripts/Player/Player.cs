@@ -11,7 +11,7 @@ public class Player : MonoBehaviour,IDamageable
     [SerializeField]
     private float jumpForce = 5f;
     [SerializeField]
-    private int health = 5;
+    private int health = 4;
 
     private Rigidbody2D rigidBody;
     private PlayerAnimation pAnimation;
@@ -116,10 +116,18 @@ public class Player : MonoBehaviour,IDamageable
     {
         Health -= damageAmount;
 
+        UIManager.Instance.UpdateLives(Health);
+
         if (Health < 1 && !isDead)
         {
             isDead = true;
             animator.SetTrigger("Death");
         }
+    }
+
+    public void AddGems(int amount)
+    {
+        DiamondsCollected += amount;
+        UIManager.Instance.UpdateGemCount(DiamondsCollected);
     }
 }
